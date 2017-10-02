@@ -1,6 +1,9 @@
 FROM google/cloud-sdk:alpine
 MAINTAINER Oscar Prieto <oscarmpp@gmail.com>
 
+# Install packages
+RUN apk add --no-cache terraform
+
 # Install kubectl
 RUN gcloud components install kubectl
 
