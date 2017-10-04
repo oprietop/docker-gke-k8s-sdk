@@ -1,0 +1,7 @@
+version: '2.1'
+services:
+  sdk:
+    image: oprietop/gke-k8s-sdk
+    volumes:
+      - ./:/root
+      - ./keys/:/root/keys/
