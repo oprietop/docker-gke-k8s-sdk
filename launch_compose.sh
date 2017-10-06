@@ -1,2 +1,2 @@
 #!/bin/sh
-docker-compose up sdk
+docker-compose run sdk
