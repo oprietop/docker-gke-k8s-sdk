@@ -5,3 +5,4 @@ services:
     volumes:
       - ./:/root
       - ./keys/:/root/keys/
+      - ./run.sh:/usr/local/bin/run.sh

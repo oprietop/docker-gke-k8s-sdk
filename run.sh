@@ -2,7 +2,23 @@
 
 if [ -d /root/keys ] ; then
     cd /root/keys
-    ls | xargs -n1 gcloud auth activate-service-account --key-file
+    KEYS=`ls -1 *json`
+    i=0
+    echo "$KEYS" | while read LINE; do
+        i=`expr $i + 1`
+        echo -e "[$i] $LINE"
+    done
+    
+    i=`echo "$KEYS" | wc -l`
+    
+    while true; do
+        echo "Choose a accunt file: 1 - $i:"
+        read -r choice
+        [ $choice -ge 1 ] && [ $choice -le $i ] && break
+    done
+    ACCOUNT=`echo "$KEYS" | sed "s/ .*//;${choice}q;d"`
+    echo "Using account: $ACCOUNT"
+    gcloud auth activate-service-account --key-file $ACCOUNT
 else
     echo "Got no keys dir, leaving..."
     exit 1
@@ -19,6 +35,10 @@ if [ -n "$LIST" ]; then
     i=`echo "$LIST" | wc -l`
     
     while true; do
+        if [ $i -eq 1 ]; then
+            choice=1
+            break
+        fi
         echo "Choose a project: 1 - $i:"
         read -r choice
         [ $choice -ge 1 ] && [ $choice -le $i ] && break
