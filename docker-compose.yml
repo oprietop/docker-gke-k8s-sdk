@@ -3,6 +3,5 @@ services:
   sdk:
     image: oprietop/gke-k8s-sdk
     volumes:
-      - ./:/root
+      - ./sandbox/:/root/sandbox/
       - ./keys/:/root/keys/
-      - ./run.sh:/usr/local/bin/run.sh
