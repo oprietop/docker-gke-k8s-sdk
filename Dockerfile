@@ -9,7 +9,7 @@ RUN chmod +x /usr/local/bin/terraform
 RUN rm terraform_*zip
 
 # Install kubectl
-RUN gcloud components install kubectl vim
+RUN gcloud components install kubectl
 
 # Copy our wrapper
 COPY run.sh /usr/local/bin/run.sh
